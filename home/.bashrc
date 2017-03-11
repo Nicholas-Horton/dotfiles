@@ -46,3 +46,6 @@ export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\[\0
 ## work stuff
 #source ~/.work_bashrc
 ## /work stuff
+
+# Display Archey3, if command exists
+command -v archey3 >/dev/null 2>&1 && archey3
