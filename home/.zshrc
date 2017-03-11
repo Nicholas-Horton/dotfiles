@@ -72,7 +72,7 @@ bindkey "^[[1;5D" backward-word       #CTRL+Left
 PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(evil_git_dirty)%{$reset_color%}$ '
 
 ## work stuff
-#source ~/.work_bashrc
+source ~/.work_bashrc
 ## /work stuff
 
 # Display Archey3, if command exists

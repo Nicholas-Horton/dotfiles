@@ -44,7 +44,7 @@ evil_git_dirty() {
 export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\[\033[0;31m\]\$(evil_git_dirty)\[\033[0m\]\$ "
 
 ## work stuff
-#source ~/.work_bashrc
+source ~/.work_bashrc
 ## /work stuff
 
 # Display Archey3, if command exists
