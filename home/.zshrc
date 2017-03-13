@@ -63,8 +63,6 @@ alias vi='vim'
 # ZSH Key bindings, for new bindings, 'cat' and hit the key to see code
 bindkey "^[[H" beginning-of-line      #HOME
 bindkey "^[[F" end-of-line            #END
-bindkey "^[[A" beginning-of-history   #UP
-bindkey "^[[B" end-of-history         #DOWN
 bindkey "^[[3~" delete-char           #DELETE
 bindkey "^[[1;5C" forward-word        #CTRL+Right
 bindkey "^[[1;5D" backward-word       #CTRL+Left
