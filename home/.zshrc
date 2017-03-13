@@ -74,3 +74,6 @@ PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$
 ## work stuff
 source ~/.work_bashrc
 ## /work stuff
+
+# Display Archey3, if command exists
+command -v archey3 >/dev/null 2>&1 && archey3

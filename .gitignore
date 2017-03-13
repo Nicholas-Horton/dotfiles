@@ -1,0 +1,7 @@
+# Ignore sensitive weechat data
+*.pem
+home/.weechat/sec.conf
+home/.weechat/irc.conf
+home/.weechat/logs/*
+home/.weechat/*.log
+
