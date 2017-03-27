@@ -59,6 +59,7 @@ function evil_git_dirty()
 alias ls='ls --color=auto'
 alias ll='ls -lv --group-directories-first'
 alias vi='vim'
+alias vim="nvim"
 
 # ZSH Key bindings, for new bindings, 'cat' and hit the key to see code
 bindkey "^[[H" beginning-of-line      #HOME
