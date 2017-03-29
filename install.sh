@@ -18,3 +18,7 @@ ln -si $CURRENT_PATH/home/.atom/keymap.cson ~/.atom/keymap.cson
 # Weechat
 ln -si $CURRENT_PATH/home/.weechat ~/.weechat
 
+echo "=-- Post install! --="
+mkdir ~/.config
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim

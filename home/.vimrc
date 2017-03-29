@@ -1,20 +1,36 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sections:
+"    -> NEO VIM
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
 "    -> Files and backups
 "    -> Text, tab and indent related
-"    -> Visual mode related
-"    -> Moving around, tabs and buffers
-"    -> Status line
-"    -> Editing mappings
-"    -> vimgrep searching and cope displaying
-"    -> Spell checking
-"    -> Misc
-"    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if !has('nvim')
+    set ttymouse=xterm2
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NEO VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
+    set clipboard=unnamed "Use system clipboard
+    call plug#begin('~/.vim/plugged')
+
+    " Adds coffeescript syntax highlighting
+    Plug 'https://github.com/kchmck/vim-coffee-script.git'
+
+    " Fuzzy finder (:FZF)
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+    " Tree toggle
+    Plug 'scrooloose/nerdtree', { 'on': 'NerdTreetoggle' }
+
+    call plug#end()
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -24,8 +40,12 @@
 set history=100
 
 " Enable filetype plugins
+filetype off
 filetype plugin on
 filetype indent on
+
+" Enable syntax highlighting
+syntax on
 set undolevels=100
 
 
@@ -66,9 +86,6 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
-
 " Uncomment if we're not seeing any colors
 "set t_Co=256
 
@@ -104,14 +121,21 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
-" Be smart when using tabs ;)
+
+" Be smart when using tabs
 set smarttab
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 set autoindent
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Auto commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove unwanted trailing spaces
+autocmd BufWritePre * %s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
