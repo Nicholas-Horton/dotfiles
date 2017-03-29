@@ -21,6 +21,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
+# Added by fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # =----------------------------------=
 # |            Helpers               |
 # |                                  |
@@ -76,3 +79,4 @@ source ~/.work_bashrc
 
 # Display Archey3, if command exists
 command -v archey3 >/dev/null 2>&1 && archey3
+
