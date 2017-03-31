@@ -16,6 +16,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 REPORTTIME=10
+EDITOR=vi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -61,15 +62,20 @@ function evil_git_dirty()
 ## Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lv --group-directories-first'
-alias vi='vim'
-alias vim='nvim'
+
+if command -v nvim >/dev/null 2>&1 && EDITOR=nvim then
+  alias vi='nvim'
+  alias vim='nvim'
+elif command -v vim >/dev/null 2>&1  && EDITOR=vim then
+  alias vi='vim'
+fi
 
 # ZSH Key bindings, for new bindings, 'cat' and hit the key to see code
-bindkey "^[[H" beginning-of-line      #HOME
-bindkey "^[[F" end-of-line            #END
-bindkey "^[[3~" delete-char           #DELETE
-bindkey "^[[1;5C" forward-word        #CTRL+Right
-bindkey "^[[1;5D" backward-word       #CTRL+Left
+bindkey "^[[H"    beginning-of-line #HOME
+bindkey "^[[F"    end-of-line       #END
+bindkey "^[[3~"   delete-char       #DELETE
+bindkey "^[[1;5C" forward-word      #CTRL+Right
+bindkey "^[[1;5D" backward-word     #CTRL+Left
 
 PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(evil_git_dirty)%{$reset_color%}$ '
 

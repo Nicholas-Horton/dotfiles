@@ -1,5 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sections:
+"    -> vim-plug Plugins
 "    -> NEO VIM
 "    -> General
 "    -> VIM user interface
@@ -10,26 +11,68 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if !has('nvim')
-    set ttymouse=xterm2
+  set ttymouse=xterm2
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-plug Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" SYNTAX HIGHLIGHTING
+" Coffeescript
+Plug 'https://github.com/kchmck/vim-coffee-script.git'
+" Handlebars
+Plug 'mustache/vim-mustache-handlebars'
+" SASS (scss)
+Plug 'cakebaker/scss-syntax.vim'
+
+" Fuzzy finder (:FZF)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Ack/ag file search
+Plug 'mileszs/ack.vim'
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --smart-case --no-heading'
+elseif executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
+endif
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+cnoreabbrev rg Ack
+cnoreabbrev rG Ack
+cnoreabbrev Rg Ack
+cnoreabbrev RG Ack
+
+" Tree toggle
+Plug 'scrooloose/nerdtree', { 'on': 'NerdTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+map <C-n> :NERDTreeToggle<CR>
+
+" Git gutter highlighting
+Plug 'airblade/vim-gitgutter'
+
+" Gruvbox theme
+Plug 'morhetz/gruvbox'
+
+
+call plug#end()
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NEO VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
-    set clipboard=unnamed "Use system clipboard
-    call plug#begin('~/.vim/plugged')
-
-    " Adds coffeescript syntax highlighting
-    Plug 'https://github.com/kchmck/vim-coffee-script.git'
-
-    " Fuzzy finder (:FZF)
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-    " Tree toggle
-    Plug 'scrooloose/nerdtree', { 'on': 'NerdTreetoggle' }
-
-    call plug#end()
+  set clipboard=unnamed "Use system clipboard
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 
@@ -48,6 +91,8 @@ filetype indent on
 syntax on
 set undolevels=100
 
+" Sets time (ms) for vim to update gui (useful for gitgutter)
+set updatetime=250
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -65,7 +110,7 @@ set number
 set hlsearch
 
 " Incremental search refines search as you type
-"set incsearch
+set incsearch
 
 " Makes working with Regexs easier
 set magic
@@ -86,19 +131,23 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Uncomment if we're not seeing any colors
-"set t_Co=256
+if $COLORTERM == 'truecolor'
+  set t_Co=256
+endif
+
+" Highlight 80 character soft limit
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 
 " Set colorscheme
-"colorscheme desert
-"set background=dark
-" Set extra options when running in GUI mode
-"if has("gui_running")
-"    set guioptions-=T
-"    set guioptions+=e
-"    set t_Co=256
-"    set guitablabel=%M\ %t
-"endif
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='hard'
+silent! colorscheme gruvbox
+set background=dark
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -110,10 +159,12 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
+" Swap file directory -- prevent from polluting active directory
+set backup
+set wb
+set swapfile
+set directory=/tmp/vim/swp//
+set backupdir=/tmp/vim/backup//
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
