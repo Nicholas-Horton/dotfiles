@@ -63,10 +63,10 @@ function evil_git_dirty()
 alias ls='ls --color=auto'
 alias ll='ls -lv --group-directories-first'
 
-if command -v nvim >/dev/null 2>&1 && EDITOR=nvim then
+if command -v nvim >/dev/null 2>&1; then
   alias vi='nvim'
   alias vim='nvim'
-elif command -v vim >/dev/null 2>&1  && EDITOR=vim then
+elif command -v vim >/dev/null 2>&1; then
   alias vi='vim'
 fi
 
