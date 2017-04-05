@@ -49,3 +49,5 @@ source ~/.work_bashrc
 
 # Display Archey3, if command exists
 command -v archey3 >/dev/null 2>&1 && archey3
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
