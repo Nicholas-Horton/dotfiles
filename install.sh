@@ -10,6 +10,7 @@ CURRENT_PATH=$(pwd)
 ln -si $CURRENT_PATH/home/.bashrc ~/.bashrc
 ln -si $CURRENT_PATH/home/.zshrc ~/.zshrc
 ln -si $CURRENT_PATH/home/.vimrc ~/.vimrc
+ln -si $CURRENT_PATH/home/.fzf.zsh ~/.fzf.zsh
 
 # Atom
 ln -si $CURRENT_PATH/home/.atom/config.cson ~/.atom/config.cson
@@ -20,5 +21,5 @@ ln -si $CURRENT_PATH/home/.weechat ~/.weechat
 
 echo "=-- Post install! --="
 mkdir ~/.config
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+ln -si ~/.vim ~/.config/nvim
+ln -si ~/.vimrc ~/.config/nvim/init.vim
