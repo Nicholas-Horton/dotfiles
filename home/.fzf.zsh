@@ -14,7 +14,7 @@ source "/home/nhorton/.fzf/shell/key-bindings.zsh"
 
 # Filter .gitignore
 # ------------
-if command -v ag >/dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+if command -v rg >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='rg --hidden --ignore-file .git -g "" --files'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
