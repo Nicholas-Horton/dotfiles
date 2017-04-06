@@ -32,9 +32,13 @@ Plug 'https://github.com/kchmck/vim-coffee-script.git'
 Plug 'mustache/vim-mustache-handlebars'
 " SASS (scss)
 Plug 'cakebaker/scss-syntax.vim'
+" Better JSON
+Plug 'elzr/vim-json'
+" ------------------
 
 " Fuzzy finder (:FZF)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim', { 'depends': 'fzf' }
 
 " Ack/ag file search
 Plug 'mileszs/ack.vim'
@@ -53,7 +57,7 @@ cnoreabbrev Rg Ack
 cnoreabbrev RG Ack
 
 " Tree toggle
-Plug 'scrooloose/nerdtree', { 'on': 'NerdTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 map <C-n> :NERDTreeToggle<CR>
 
@@ -63,6 +67,25 @@ Plug 'airblade/vim-gitgutter'
 " Gruvbox theme
 Plug 'morhetz/gruvbox'
 
+" Cool lightweight status bar
+Plug 'shinchu/lightline-gruvbox.vim'
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+Plug 'itchyny/lightline.vim'
+
+" Sublime-like multiple cursors
+" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
@@ -71,7 +94,9 @@ call plug#end()
 " => NEO VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
-  set clipboard=unnamed "Use system clipboard
+  if has('clipboard') && (executable('pbcopy') || executable('xclip') || executable('xsel'))
+    set clipboard+=unnamedplus "Use system clipboard
+  endif
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
@@ -163,6 +188,10 @@ set ffs=unix,dos,mac
 set backup
 set wb
 set swapfile
+
+silent !mkdir /tmp/vim/swp > /dev/null 2>&1
+silent !mkdir /tmp/vim/backup > /dev/null 2>&1
+
 set directory=/tmp/vim/swp//
 set backupdir=/tmp/vim/backup//
 
@@ -179,7 +208,15 @@ set smarttab
 " 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
-set autoindent
+
+" Smart indent
+set si
+
+" Auto indent
+set ai
+
+" Wrap lines
+set wrap
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -187,6 +224,21 @@ set autoindent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove unwanted trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Hotkeys
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF
+nnoremap <leader>R :Tags<cr>
+nnoremap <leader>r :BTags<cr>
+nnoremap <leader>D :Lines<cr>
+nnoremap <Space> :BLines<cr>
+nnoremap <C-p> :FZF<cr>
+nnoremap <C-f> :Buffers<cr>
+
+" Search selection
+vnoremap // y/\V<C-R>"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

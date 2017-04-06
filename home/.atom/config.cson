@@ -5,6 +5,8 @@
     disabledPackages: [
       "metrics"
       "open-on-github"
+      "linter-coffeelint"
+      "linter-rubocop"
     ]
     projectHome: "/home/nhorton/git-workspace"
     telemetryConsent: "no"
@@ -13,7 +15,6 @@
       "gruvbox-plus-syntax"
     ]
   editor:
-    fontSize: 15
     showIndentGuide: true
   "exception-reporting":
     userId: "5f2726ab-9e5b-783d-7ca1-9e4f624abbbd"
@@ -21,6 +22,8 @@
     onChanges: true
   "gruvbox-plus-syntax":
     contrast: "Hard"
+  linter:
+    errorPanelHeight: 24
   minimap:
     absoluteMode: true
     plugins:
