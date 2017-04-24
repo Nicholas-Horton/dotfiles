@@ -17,6 +17,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 REPORTTIME=10
 EDITOR=vi
+COUNTRY=CA
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

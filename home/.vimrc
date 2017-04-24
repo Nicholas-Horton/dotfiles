@@ -7,6 +7,8 @@
 "    -> Colors and Fonts
 "    -> Files and backups
 "    -> Text, tab and indent related
+"    -> Auto commands
+"    -> Hotkeys/Keymaps
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -43,7 +45,7 @@ Plug 'junegunn/fzf.vim', { 'depends': 'fzf' }
 " Ack/ag file search
 Plug 'mileszs/ack.vim'
 if executable('rg')
-  let g:ackprg = 'rg --vimgrep --smart-case --no-heading'
+  let g:ackprg = 'rg --vimgrep --smart-case --ignore-file .git -g ""'
 elseif executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
 endif
@@ -56,10 +58,13 @@ cnoreabbrev rG Ack
 cnoreabbrev Rg Ack
 cnoreabbrev RG Ack
 
-" Tree toggle
+" NERDTreeToggle
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 map <C-n> :NERDTreeToggle<CR>
+
+" NERDCommenter
+Plug 'scrooloose/nerdcommenter'
 
 " Git gutter highlighting
 Plug 'airblade/vim-gitgutter'
@@ -227,7 +232,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Hotkeys
+" => Hotkeys/Keymaps
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 nnoremap <leader>R :Tags<cr>
@@ -235,7 +240,10 @@ nnoremap <leader>r :BTags<cr>
 nnoremap <leader>D :Lines<cr>
 nnoremap <Space> :BLines<cr>
 nnoremap <C-p> :FZF<cr>
-nnoremap <C-f> :Buffers<cr>
+nnoremap <C-F> :Buffers<cr>
+
+" Ack search
+nnoremap <leader>a :Ack!<space>""<left>
 
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
