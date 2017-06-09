@@ -58,13 +58,20 @@ cnoreabbrev rG Ack
 cnoreabbrev Rg Ack
 cnoreabbrev RG Ack
 
+" neoformatter
+Plug 'sbdchd/neoformat'
+let g:neoformat_try_formatprg = 1
+autocmd FileType javascript setlocal formatprg=npm\ run\ -s\ prettier
+
 " NERDTreeToggle
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-map <C-n> :NERDTreeToggle<CR>
+map <C-\> :NERDTreeToggle<CR>
 
 " NERDCommenter
 Plug 'scrooloose/nerdcommenter'
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
 
 " Git gutter highlighting
 Plug 'airblade/vim-gitgutter'
@@ -127,6 +134,10 @@ set updatetime=250
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable mouse support
+set mouse=a
+
+
 " Turn on the ruler (bar which indicates cursor position)
 set ruler
 
@@ -194,11 +205,11 @@ set backup
 set wb
 set swapfile
 
-silent !mkdir /tmp/vim/swp > /dev/null 2>&1
-silent !mkdir /tmp/vim/backup > /dev/null 2>&1
+silent !mkdir ~/.tmp/vim/swp > /dev/null 2>&1
+silent !mkdir ~/.tmp/vim/backup > /dev/null 2>&1
 
-set directory=/tmp/vim/swp//
-set backupdir=/tmp/vim/backup//
+set directory=~/.tmp/vim/swp//
+set backupdir=~/.tmp/vim/backup//
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -227,8 +238,14 @@ set wrap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Auto commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" BEFORE SAVE
 " Remove unwanted trailing spaces
 autocmd BufWritePre * %s/\s\+$//e
+
+"augroup fmt
+"  autocmd!
+"  autocmd BufWritePre * silent Neoformat
+"augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,10 +257,10 @@ nnoremap <leader>r :BTags<cr>
 nnoremap <leader>D :Lines<cr>
 nnoremap <Space> :BLines<cr>
 nnoremap <C-p> :FZF<cr>
-nnoremap <C-F> :Buffers<cr>
+"nnoremap <C-F> :Buffers<cr>
 
 " Ack search
-nnoremap <leader>a :Ack!<space>""<left>
+nnoremap <leader>/ :Ack!<space>""<left>
 
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
