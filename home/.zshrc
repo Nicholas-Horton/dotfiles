@@ -1,6 +1,5 @@
 # ZSH options
-setopt sharehistory
-setopt extendedhistory
+unsetopt share_history
 setopt prompt_subst
 autoload -Uz compinit && compinit
 autoload -U colors && colors
