@@ -1,4 +1,8 @@
-# ZSH options
+# =----------------------------------=
+# |          ZSH Options             |
+# |                                  |
+# =----------------------------------=
+#
 unsetopt share_history
 setopt prompt_subst
 autoload -Uz compinit && compinit
@@ -7,10 +11,14 @@ autoload -U promptinit && promptinit
 
 bindkey -e
 
-zstyle ':compinstall filename' '/home/nhorton/.zshrc'
+zstyle ':compinstall filename' '~/.zshrc'
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
 
-# VAR SETTINGS
+# =----------------------------------=
+# |         ENV Variables            |
+# |                                  |
+# =----------------------------------=
+#
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -18,11 +26,17 @@ REPORTTIME=10
 EDITOR=vi
 COUNTRY=CA
 
+# =----------------------------------=
+# |      Application-specific        |
+# |                                  |
+# =----------------------------------=
+#
+# Ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
-# Added by fzf
+# FZF -- Source settings, if they exist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # =----------------------------------=
@@ -30,36 +44,42 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 # |                                  |
 # =----------------------------------=
 #
-# =- Find a file by pattern -=
+# =-- Find a file by pattern --=
 function ff()
 {
   find . -type f -iname '*'"$*"'*' -ls ;
 }
 
-# Find file and execute command on that file
+# =-- Find file and execute command on that file --=
 function fe()
 {
   find . -type f -iname '*'"${1:-}"'*' \
 	 -exec ${2:-file} {} \; ;
 }
-
-function my_ip() # Get IP adress on ethernet.
+# =-- Get IP adress on ethernet --=
+function my_ip()
 {
 	MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' | sed -e s/addr://)
 	echo ${MY_IP:-"Not connected"}
 }
 
+# =-- Get the branch name when in git repo --=
 function parse_git_branch()
 {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# =-- Figure out if there are staged changes --=
 function evil_git_dirty()
 {
 	[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
 
-## Aliases
+# =----------------------------------=
+# |            Aliases               |
+# |                                  |
+# =----------------------------------=
+#
 alias ls='ls --color=auto'
 alias ll='ls -lv --group-directories-first'
 
@@ -77,6 +97,11 @@ bindkey "^[[3~"   delete-char       #DELETE
 bindkey "^[[1;5C" forward-word      #CTRL+Right
 bindkey "^[[1;5D" backward-word     #CTRL+Left
 
+# =----------------------------------=
+# |            Prompt                |
+# |                                  |
+# =----------------------------------=
+#
 PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(evil_git_dirty)%{$reset_color%}$ '
 
 ## work stuff
