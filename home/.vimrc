@@ -32,10 +32,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/kchmck/vim-coffee-script.git'
 " Handlebars
 Plug 'mustache/vim-mustache-handlebars'
-" SASS (scss)
+" CSS3/SASS (scss)
+Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 " Better JSON
 Plug 'elzr/vim-json'
+" Better JS
+Plug 'pangloss/vim-javascript'
 " ------------------
 
 " Fuzzy finder (:FZF)
@@ -256,7 +259,8 @@ nnoremap <leader>R :Tags<cr>
 nnoremap <leader>r :BTags<cr>
 nnoremap <leader>D :Lines<cr>
 nnoremap <Space> :BLines<cr>
-nnoremap <C-p> :FZF<cr>
+"nnoremap <C-p> :FZF<cr>
+nnoremap <C-p> :call fzf#vim#gitfiles('', fzf#vim#with_preview('right'))<cr>
 "nnoremap <C-F> :Buffers<cr>
 
 " Ack search
