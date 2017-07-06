@@ -12,6 +12,7 @@ ln -si $CURRENT_PATH/home/.zshrc ~/.zshrc
 ln -si $CURRENT_PATH/home/.vimrc ~/.vimrc
 ln -si $CURRENT_PATH/home/.gitconfig ~/.gitconfig
 ln -si $CURRENT_PATH/home/.fzf.zsh ~/.fzf.zsh
+ln -si $CURRENT_PATH/home/.tmux.conf ~/.tmux.conf
 
 # Atom
 ln -si $CURRENT_PATH/home/.atom/config.cson ~/.atom/config.cson
