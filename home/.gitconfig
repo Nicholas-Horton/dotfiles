@@ -41,3 +41,4 @@
   path = ~/.gitconfig.local
 [diff-so-fancy]
 	stripLeadingSymbols = false
+	markEmptyLines = false
