@@ -24,7 +24,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 REPORTTIME=10
 EDITOR=vi
-COUNTRY=CA
+COUNTRY=US
+export LANG="en_US.UTF-8"
 
 # =----------------------------------=
 # |      Application-specific        |
@@ -107,6 +108,14 @@ PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$
 ## work stuff
 [ -f ~/.work_bashrc ] && source ~/.work_bashrc
 ## /work stuff
+
+## VIM stuff
+[ -f "~/.vim/plugged/gruvbox/gruvbox_256palette.sh" ] && source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+if command -v xcape >/dev/null 2>&1; then
+  xcape -t 750
+fi
+## /VIM stuff
 
 # Display Archey3, if command exists
 command -v archey3 >/dev/null 2>&1 && archey3
