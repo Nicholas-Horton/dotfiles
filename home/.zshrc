@@ -45,6 +45,13 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 # |                                  |
 # =----------------------------------=
 #
+# =-- FZF Git status files --=
+# Usage: git checkout fst
+function fst()
+{
+  { git diff --cached --name-only & git ls-files  -dom --exclude-standard; } | sort -u | fzf -m --preview "cat {}"
+}
+
 # =-- Find a file by pattern --=
 function ff()
 {
@@ -57,6 +64,7 @@ function fe()
   find . -type f -iname '*'"${1:-}"'*' \
 	 -exec ${2:-file} {} \; ;
 }
+
 # =-- Get IP adress on ethernet --=
 function my_ip()
 {
@@ -71,7 +79,7 @@ function parse_git_branch()
 }
 
 # =-- Figure out if there are staged changes --=
-function evil_git_dirty()
+function git_dirty()
 {
 	[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
@@ -103,7 +111,7 @@ bindkey "^[[1;5D" backward-word     #CTRL+Left
 # |                                  |
 # =----------------------------------=
 #
-PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(evil_git_dirty)%{$reset_color%}$ '
+PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(git_dirty)%{$reset_color%}$ '
 
 ## work stuff
 [ -f ~/.work_bashrc ] && source ~/.work_bashrc

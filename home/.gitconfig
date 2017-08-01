@@ -33,8 +33,11 @@
 
 # Aliases
 [alias]
-	fadd = !sh -c \"git add $(git ls-files -m | fzf -m)\"
-	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+  # FZF
+	fadd = !sh -c \"git add $(git ls-files -dom --exclude-standard | sort -u | fzf -m | xargs)\"
+	fco  = !sh -c \"git checkout $(git branch | fzf)\"
+	ffco = !sh -c \"git checkout $(git ls-files -dom --exclude-standard | sort -u | fzf -m | xargs)\"
+	dsf  = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
 
 # use separate file for username / github token / etc
 [include]
@@ -42,3 +45,5 @@
 [diff-so-fancy]
 	stripLeadingSymbols = false
 	markEmptyLines = false
+[pull]
+	rebase = true
