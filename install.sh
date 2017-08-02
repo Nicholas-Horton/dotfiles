@@ -22,6 +22,11 @@ ln -si $CURRENT_PATH/home/.atom/keymap.cson ~/.atom/keymap.cson
 ln -si $CURRENT_PATH/home/.weechat ~/.weechat
 
 echo "=-- Post install! --="
-mkdir ~/.config
-ln -si ~/.vim ~/.config/nvim
+mkdir -p ~/.config
+
+mkdir -p ~/.config/nvim
 ln -si ~/.vimrc ~/.config/nvim/init.vim
+
+mkdir -p ~/.config/rofi
+ln -si $CURRENT_PATH/home/.config/rofi/config ~/.config/rofi/config
+
