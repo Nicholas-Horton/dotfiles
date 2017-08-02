@@ -14,10 +14,6 @@ ln -si $CURRENT_PATH/home/.gitconfig ~/.gitconfig
 ln -si $CURRENT_PATH/home/.fzf.zsh ~/.fzf.zsh
 ln -si $CURRENT_PATH/home/.tmux.conf ~/.tmux.conf
 
-# Atom
-ln -si $CURRENT_PATH/home/.atom/config.cson ~/.atom/config.cson
-ln -si $CURRENT_PATH/home/.atom/keymap.cson ~/.atom/keymap.cson
-
 # Weechat
 ln -si $CURRENT_PATH/home/.weechat ~/.weechat
 
