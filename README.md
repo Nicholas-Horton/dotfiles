@@ -1,5 +1,6 @@
 # Dotfiles
-All of those sweet configuration files in one place, making setup infinitely easier.
+All of those sweet configuration files in one place, making setup infinitely
+easier.
   * Automatically links all of the configuration files into your home directory
   * Make changes and easily push a commit when you see something you like!
 
@@ -15,6 +16,20 @@ cd dotfiles
 ./install.sh
 ```
 
-Don't worry! If a configuration file already exists, the script will ask you if you
-would like to overwrite it!
+Don't worry! If a configuration file already exists, the script will ask you if
+you would like to overwrite it!
 
+# Recommended Packages
+In order to get my setup working correctly, it's recommended you install the
+following packages:
+
+## Core
+```bash
+pacman -S git zsh neovim tmux xbindkeys rofi fzf archey3
+```
+
+## Optional
+```bash
+pacman -S xfce4 pacaur weechat exa
+pacaur -S alacritty-git
+```
