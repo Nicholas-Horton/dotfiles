@@ -31,7 +31,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! rofi.run-list-command:
 
 ! "Run command to execute that runs in shell" Set from: Default
-! rofi.run-shell-command:              {terminal} -e {cmd}
+rofi.run-shell-command:              {terminal} -e {cmd}
 
 ! "Command executed on accep-entry-custom for window modus" Set from: Default
 ! rofi.window-command:                 xkill -id {window}
@@ -52,7 +52,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! rofi.combi-modi:                     window,run
 
 ! "Pidfile location" Set from: Default
-! rofi.pid:                            /run/user/1000/rofi.pid
+rofi.pid:                            /run/user/1000/rofi.pid
 
 
 ! =-------------------------------------------------------------------------=
@@ -61,7 +61,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! |                                                                         |
 ! =-------------------------------------------------------------------------=
 ! "Enabled modi" Set from: Default
-rofi.modi:                           window,run,ssh
+rofi.modi:                           drun,window,run
 
 ! "Window width" Set from: Default
 rofi.width:                          30
@@ -70,13 +70,13 @@ rofi.width:                          30
 rofi.lines:                          20
 
 ! "Number of columns" Set from: Default
-! rofi.columns:                        1
+rofi.columns:                        1
 
 ! "Font to use" Set from: Default
 !rofi.font:                           hack 12
 
 ! "Border width" Set from: Default
-! rofi.bw:                             1
+rofi.bw:                             0
 
 ! "Location on screen" Set from: Default
 ! rofi.location:                       0
@@ -168,7 +168,7 @@ rofi.color-urgent: #cc241d, #282828, #cc241d, #fb4934, #282828
 rofi.case-sensitive:                 false
 
 ! "Cycle through the results list" Set from: Default
-! rofi.cycle:                          true
+rofi.cycle:                          true
 
 ! "Indicate how it match by underlining it." Set from: Default
 rofi.show-match:                     true
@@ -285,13 +285,13 @@ rofi.kb-row-last:                    End,KP_End
 rofi.kb-row-select:                  Control+space
 
 ! "Take a screenshot of the rofi window" Set from: Default
-rofi.kb-screenshot:                  Alt+S
+! rofi.kb-screenshot:                  Alt+S
 
 ! "Toggle case sensitivity" Set from: Default
-rofi.kb-toggle-case-sensitivity:     grave,dead_grave
+! rofi.kb-toggle-case-sensitivity:     grave,dead_grave
 
 ! "Toggle sort" Set from: Default
-rofi.kb-toggle-sort:                 Alt+grave
+! rofi.kb-toggle-sort:                 Alt+grave
 
 ! "Quit rofi" Set from: Default
 rofi.kb-cancel:                      Escape,Control+c,Super_L
