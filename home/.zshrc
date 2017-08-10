@@ -1,7 +1,8 @@
-# =----------------------------------=
-# |          ZSH Options             |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                               ZSH Options                                  |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
 unsetopt share_history
 setopt prompt_subst
@@ -14,10 +15,11 @@ bindkey -e
 zstyle ':compinstall filename' '~/.zshrc'
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
 
-# =----------------------------------=
-# |         ENV Variables            |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                              ENV Variables                                 |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -27,10 +29,11 @@ EDITOR=vi
 COUNTRY=US
 export LANG="en_US.UTF-8"
 
-# =----------------------------------=
-# |      Application-specific        |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                           Application-specific                             |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
 # Ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -40,10 +43,11 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 # FZF -- Source settings, if they exist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# =----------------------------------=
-# |            Helpers               |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                                Helpers                                     |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
 # =-- FZF Git status files --=
 # Usage: git checkout fst
@@ -84,13 +88,20 @@ function git_dirty()
 	[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
 
-# =----------------------------------=
-# |            Aliases               |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                                 Aliases                                    |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
-alias ls='ls --color=auto'
-alias ll='ls -lv --group-directories-first'
+
+if command -v exa >/dev/null 2>&1; then
+  alias ls='exa --color=auto'
+  alias ll='exa -Glag --group-directories-first'
+else
+  alias ls='ls --color=auto'
+  alias ll='ls -lv --group-directories-first'
+fi
 
 if command -v nvim >/dev/null 2>&1; then
   alias vi='nvim'
@@ -106,12 +117,13 @@ bindkey "^[[3~"   delete-char       #DELETE
 bindkey "^[[1;5C" forward-word      #CTRL+Right
 bindkey "^[[1;5D" backward-word     #CTRL+Left
 
-# =----------------------------------=
-# |            Prompt                |
-# |                                  |
-# =----------------------------------=
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                                  Prompt                                    |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
 #
-PS1='%{$reset_color%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(git_dirty)%{$reset_color%}$ '
+PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(git_dirty)%{$reset_color%}$ '
 
 ## work stuff
 [ -f ~/.work_bashrc ] && source ~/.work_bashrc
