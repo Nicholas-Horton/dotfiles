@@ -51,6 +51,8 @@ Plug 'pangloss/vim-javascript'
 " Surround
 Plug 'tpope/vim-surround'
 
+"Supertab completion
+Plug 'ervandew/supertab'
 
 " Fuzzy finder (:FZF)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
