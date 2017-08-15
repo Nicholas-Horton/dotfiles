@@ -11,7 +11,6 @@ ln -si $CURRENT_PATH/home/.bashrc ~/.bashrc
 ln -si $CURRENT_PATH/home/.zshrc ~/.zshrc
 ln -si $CURRENT_PATH/home/.vimrc ~/.vimrc
 ln -si $CURRENT_PATH/home/.gitconfig ~/.gitconfig
-ln -si $CURRENT_PATH/home/.fzf.zsh ~/.fzf.zsh
 ln -si $CURRENT_PATH/home/.tmux.conf ~/.tmux.conf
 ln -si $CURRENT_PATH/home/.xbindkeysrc ~/.xbindkeysrc
 
