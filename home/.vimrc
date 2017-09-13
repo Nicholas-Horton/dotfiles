@@ -50,6 +50,7 @@ Plug 'pangloss/vim-javascript'
 " VIM MOTIONS
 " Surround
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 "Supertab completion
 Plug 'ervandew/supertab'
@@ -108,17 +109,10 @@ Plug 'airblade/vim-gitgutter'
 " Gruvbox theme
 Plug 'morhetz/gruvbox'
 
-" Cool lightweight status bar
-Plug 'shinchu/lightline-gruvbox.vim'
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-Plug 'itchyny/lightline.vim'
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='gruvbox'
+Plug 'vim-airline/vim-airline'
 
 " Sublime-like multiple cursors
 " Default mapping
@@ -254,9 +248,6 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 
-" Smart indent
-set si
-
 " Auto indent
 set ai
 
@@ -269,7 +260,14 @@ set wrap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" BEFORE SAVE
 " Remove unwanted trailing spaces
-autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
+function! StripWhitespace()
+  let _s=@/
+  %s/\s\+$//e
+  let @/=_s
+endfunction
+
+autocmd BufWritePre * call StripWhitespace()
 
 " Runtime toggle prettier/neoformat
 function! ToggleNeoformat()
@@ -296,15 +294,20 @@ augroup END
 " => Hotkeys/Keymaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
-nnoremap <leader>R :Tags<cr>
-nnoremap <leader>r :BTags<cr>
-nnoremap <leader>D :Lines<cr>
+nnoremap <leader>? :Tags<cr>
+"nnoremap <leader>D :Lines<cr>
+nnoremap <C-Space> :BTags<cr>
 nnoremap <Space> :BLines<cr>
-nnoremap <C-p> :call fzf#vim#gitfiles('', fzf#vim#with_preview('right'))<cr>
-nnoremap <C-F> :Buffers<cr>
+nnoremap <C-g> :GFiles?<cr>
+nnoremap <C-p> :FZF<cr>
+"nnoremap <C-f> :Buffers<cr>
 
 " Ack search
 nnoremap <leader>/ :Ack!<space>""<left>
+
+" H+L go to start/end of line
+noremap H ^
+noremap L g_
 
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
@@ -316,6 +319,5 @@ nmap <S-Down> 5j
 vmap <S-Up> 5k
 vmap <S-Down> 5j
 
-" H+L go to start/end of line
-noremap H ^
-noremap L g_
+" Get rid of the frustrating c-w deletion in insert mode
+inoremap <c-w> <esc><c-w>
