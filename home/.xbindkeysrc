@@ -1,3 +1,9 @@
 # Run rofi on super press
 "rofi -show run"
-Super_L
+  Super_L
+
+# Press and hold Super_L and Tab for window mode
+# Note: You need to hold for about a half second for
+# Super_L to become Mod4. Not sure why.
+"rofi -show window"
+  release+Mod4 + Tab
