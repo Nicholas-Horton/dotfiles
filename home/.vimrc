@@ -51,10 +51,10 @@ Plug 'elzr/vim-json'
 " Better JS
 Plug 'pangloss/vim-javascript'
 
-" VIM MOTIONS
-" Surround
+" TPOPE
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
 
 "Supertab completion
 Plug 'ervandew/supertab'
