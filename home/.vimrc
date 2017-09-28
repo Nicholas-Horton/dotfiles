@@ -278,7 +278,7 @@ function! ToggleNeoformat()
     if !exists('#fmt#BufWritePre')
         augroup fmt
           autocmd!
-          autocmd BufWritePre * silent Neoformat
+          autocmd BufWritePre *.js silent Neoformat
         augroup END
     else
         augroup fmt
@@ -290,7 +290,7 @@ endfunction
 " Prettier/neoformat
 augroup fmt
   autocmd!
-  autocmd BufWritePre * silent Neoformat
+  autocmd BufWritePre *.js silent Neoformat
 augroup END
 
 
