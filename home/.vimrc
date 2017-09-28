@@ -12,9 +12,13 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if !has('nvim')
-  set ttymouse=xterm2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NEO VIM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
   set termguicolors
+else
+  set ttymouse=xterm2
   execute "set t_8f=\e[38;2;%lu;%lu;%lum"
   execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 endif
@@ -208,7 +212,7 @@ endif
 
 
 " Set colorscheme
-let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 silent! colorscheme gruvbox
 set background=dark
