@@ -319,9 +319,10 @@ vnoremap // y/\V<C-R>"<CR>
 " Make shift up+down more reasonable...
 nmap <S-Up> 5k
 nmap <S-Down> 5j
-" these are mapped in visual mode
 vmap <S-Up> 5k
 vmap <S-Down> 5j
+imap <S-Up> <up><up><up><up><Up>
+imap <S-Down> <down><down><down><down><down>
 
 " Get rid of the frustrating c-w deletion in insert mode
 inoremap <c-w> <esc><c-w>
