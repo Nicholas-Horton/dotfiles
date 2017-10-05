@@ -43,19 +43,19 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: monospace # should be "Menlo" or something on macOS.
+    family: Hack
     # Style can be specified to pick a specific face.
     # style: Italic
 
@@ -189,9 +189,9 @@ key_bindings:
   - { key: W,        mods: Command, action: Quit                         }
   - { key: Insert,   mods: Shift,   action: PasteSelection               }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
+  - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[4~",  mode: ~AppCursor  }
+  - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
   - { key: PageUp,                  chars: "\x1b[5~"                     }
