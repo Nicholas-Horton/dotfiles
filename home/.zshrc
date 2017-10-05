@@ -28,6 +28,7 @@ REPORTTIME=10
 EDITOR=vi
 COUNTRY=US
 export LANG="en_US.UTF-8"
+export GPG_TTY=$(tty)
 
 # =----------------------------------------------------------------------------=
 # |                                                                            |
@@ -139,4 +140,3 @@ fi
 
 # Display Archey3, if command exists
 command -v archey3 >/dev/null 2>&1 && archey3
-

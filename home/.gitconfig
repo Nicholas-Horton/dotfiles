@@ -47,3 +47,5 @@
 	markEmptyLines = false
 [pull]
 	rebase = true
+[gpg]
+	program = gpg
