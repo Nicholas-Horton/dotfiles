@@ -49,3 +49,5 @@
 	rebase = true
 [gpg]
 	program = gpg
+[user]
+	signingkey = A6B9053357EC579C
