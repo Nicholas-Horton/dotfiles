@@ -27,4 +27,5 @@ mkdir -p ~/.config/rofi
 mkdir -p ~/.config/alacritty
 ln -si ~/git-workspace/dotfiles/home/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -si $CURRENT_PATH/home/.config/rofi/config ~/.config/rofi/config
+ln -sid $CURRENT_PATH/home/.config/terminator ~/.config/terminator
 
