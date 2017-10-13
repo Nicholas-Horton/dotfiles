@@ -316,13 +316,13 @@ noremap L g_
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
 
-" Make shift up+down more reasonable...
-nmap <S-Up> 5k
-nmap <S-Down> 5j
-vmap <S-Up> 5k
-vmap <S-Down> 5j
-imap <S-Up> <up><up><up><up><Up>
-imap <S-Down> <down><down><down><down><down>
+" Make up+down motion more reasonable...
+nmap <C-k> 5k
+nmap <C-j> 5j
+vmap <C-k> 5k
+vmap <C-j> 5j
+imap <C-k> <up><up><up><up><up>
+imap <C-j> <down><down><down><down><down>
 
 " Get rid of the frustrating c-w deletion in insert mode
 inoremap <c-w> <esc><c-w>
