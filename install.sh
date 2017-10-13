@@ -13,6 +13,7 @@ ln -si $CURRENT_PATH/home/.vimrc ~/.vimrc
 ln -si $CURRENT_PATH/home/.gitconfig ~/.gitconfig
 ln -si $CURRENT_PATH/home/.tmux.conf ~/.tmux.conf
 ln -si $CURRENT_PATH/home/.xbindkeysrc ~/.xbindkeysrc
+ln -si $CURRENT_PATH/home/.xprofile ~/.xprofile
 
 # Weechat
 ln -si $CURRENT_PATH/home/.weechat ~/.weechat
