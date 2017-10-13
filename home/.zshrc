@@ -134,10 +134,6 @@ PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_g
 
 ## VIM stuff
 [ -f "~/.vim/plugged/gruvbox/gruvbox_256palette.sh" ] && source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
-if command -v xcape >/dev/null 2>&1; then
-  xcape -t 750
-fi
 ## /VIM stuff
 
 # Display Archey3, if command exists
