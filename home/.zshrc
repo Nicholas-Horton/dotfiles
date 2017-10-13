@@ -112,6 +112,8 @@ elif command -v vim >/dev/null 2>&1; then
 fi
 
 # ZSH Key bindings, for new bindings, 'cat' and hit the key to see code
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
 bindkey "^[[H"    beginning-of-line #HOME
 bindkey "^[[F"    end-of-line       #END
 bindkey "^[[3~"   delete-char       #DELETE
