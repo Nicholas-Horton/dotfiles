@@ -57,7 +57,28 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 
 "Supertab completion
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
+if has('nvim')
+  " Asynchronous keyword completion
+  let g:deoplete#enable_at_startup = 1
+
+  "Tab completion
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/neco-syntax'
+
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+  " tern
+  "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+  "if exists('g:plugs["tern_for_vim"]')
+  "  let g:tern_show_argument_hints = 'on_hold'
+  "  let g:tern_show_signature_in_pum = 1
+  "  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  "endif
+  "autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+endif
 
 " Fuzzy finder (:FZF)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
