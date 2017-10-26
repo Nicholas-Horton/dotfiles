@@ -209,6 +209,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Allow moving away from a buffer without saving
+set hidden
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
