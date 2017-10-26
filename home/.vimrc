@@ -16,7 +16,12 @@
 " => NEO VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set termguicolors
+
+  if has('clipboard') && (executable('pbcopy') || executable('xclip') || executable('xsel'))
+    set clipboard+=unnamedplus "Use system clipboard
+  endif
 else
   set ttymouse=xterm2
   execute "set t_8f=\e[38;2;%lu;%lu;%lum"
@@ -148,18 +153,6 @@ let g:multi_cursor_quit_key='<Esc>'
 Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NEO VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('nvim')
-  if has('clipboard') && (executable('pbcopy') || executable('xclip') || executable('xsel'))
-    set clipboard+=unnamedplus "Use system clipboard
-  endif
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
