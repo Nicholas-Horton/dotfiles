@@ -73,7 +73,7 @@ rofi.lines:                          20
 rofi.columns:                        1
 
 ! "Font to use" Set from: Default
-!rofi.font:                           hack 12
+rofi.font:                           hack 12
 
 ! "Border width" Set from: Default
 rofi.bw:                             0
@@ -231,13 +231,13 @@ rofi.kb-remove-char-forward:         Delete,Control+d
 rofi.kb-remove-char-back:            BackSpace,Control+h
 
 ! "Delete till the end of line" Set from: Default
-rofi.kb-remove-to-eol:               Control+k
+rofi.kb-remove-to-eol:
 
 ! "Delete till the start of line" Set from: Default
 rofi.kb-remove-to-sol:               Control+u
 
 ! "Accept entry" Set from: Default
-rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
 
 ! "Use entered text as command (in ssh/run modi)" Set from: Default
 rofi.kb-accept-custom:               Control+Return
@@ -261,10 +261,10 @@ rofi.kb-row-left:                    Control+Page_Up
 rofi.kb-row-right:                   Control+Page_Down
 
 ! "Select previous entry" Set from: Default
-rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab
+rofi.kb-row-up:                      Up,Control+k,Control+p,Shift+Tab,Shift+ISO_Left_Tab
 
 ! "Select next entry" Set from: Default
-rofi.kb-row-down:                    Down,Control+n
+rofi.kb-row-down:                    Down,Control+j,Control+n
 
 ! "Go to next row, if one left, accept it, if no left next mode." Set from: Default
 rofi.kb-row-tab:                     Tab
