@@ -26,6 +26,7 @@
 # Show the diff when writing commit message
 [commit]
   verbose = true
+  gpgsign = true
 
 # push easily. http://stackoverflow.com/a/23918418/89484
 [push]
