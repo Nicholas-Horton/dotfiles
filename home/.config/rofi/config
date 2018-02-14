@@ -16,7 +16,7 @@
 ! |                                                                         |
 ! =-------------------------------------------------------------------------=
 ! "Terminal to use" Set from: Default
-rofi.terminal:                       alacritty
+rofi.terminal:                       terminator
 
 ! "Ssh client to use" Set from: Default
 rofi.ssh-client:                     ssh
