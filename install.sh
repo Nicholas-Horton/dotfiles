@@ -30,3 +30,5 @@ ln -si ~/git-workspace/dotfiles/home/.config/alacritty/alacritty.yml ~/.config/a
 ln -si $CURRENT_PATH/home/.config/rofi/config ~/.config/rofi/config
 ln -sid $CURRENT_PATH/home/.config/terminator ~/.config/terminator
 
+mkdir -p ~/.gnupg
+ln -si $CURRENT_PATH/home/.gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
