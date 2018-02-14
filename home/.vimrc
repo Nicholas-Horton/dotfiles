@@ -137,6 +137,10 @@ let g:NERDCommentEmptyLines = 1
 Plug 'airblade/vim-gitgutter'
 
 " Gruvbox theme
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+let g:gruvbox_sign_column='bg0'
 Plug 'morhetz/gruvbox'
 
 " Airline
@@ -228,10 +232,11 @@ endif
 
 
 " Set colorscheme
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
 silent! colorscheme gruvbox
 set background=dark
+
+"set cursorline
+"hi CursorLine guibg=#282828
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
