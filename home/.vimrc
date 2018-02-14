@@ -330,10 +330,6 @@ nnoremap <C-p> :FZF<cr>
 " Ack search
 nnoremap <leader>/ :Ack!<space>""<left>
 
-" H+L go to start/end of line
-noremap H ^
-noremap L g_
-
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
 
@@ -345,5 +341,14 @@ vmap <C-j> 5j
 imap <C-k> <up><up><up><up><up>
 imap <C-j> <down><down><down><down><down>
 
+" Make left-right motion more reasonable...
+nmap <C-h> ^
+nmap <C-l> g_
+vmap <C-h> ^
+vmap <C-l> g_
+imap <C-h> <c-o>^
+imap <C-l> <c-o>g_
+
 " Get rid of the frustrating c-w deletion in insert mode
 inoremap <c-w> <esc><c-w>
+nnoremap Q <Nop>
