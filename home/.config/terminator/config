@@ -57,6 +57,13 @@
   toggle_zoom = None
   ungroup_all = None
   ungroup_tab = None
+[layouts]
+  [[default]]
+    [[[window 0]]]
+      parent = ""
+      size = 725, 448
+      type = Window
+[plugins]
 [profiles]
   [[default]]
     background_color = "#282828"
@@ -68,9 +75,3 @@
     scrollback_lines = 10000
     show_titlebar = False
     use_system_font = False
-[layouts]
-  [[default]]
-    [[[window 0]]]
-      type = Window
-      parent = ""
-      size = 725, 448
