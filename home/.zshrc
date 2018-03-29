@@ -143,6 +143,14 @@ PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_g
 # Display neofetch, if command exists
 command -v neofetch >/dev/null 2>&1 && neofetch
 
+# =----------------------------------------------------------------------------=
+# |                                                                            |
+# |                                 External                                   |
+# |                                                                            |
+# =----------------------------------------------------------------------------=
+#
+# Source local file for stuff specific to this machine
+[ -f ~/.local.zshrc ] && source ~/.local.zshrc
 
 ## VIM stuff
 [ -f "~/.vim/plugged/gruvbox/gruvbox_256palette.sh" ] && source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
