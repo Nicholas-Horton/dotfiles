@@ -25,11 +25,12 @@ following packages:
 
 ## Core
 ```bash
-pacman -S git zsh neovim tmux xbindkeys rofi fzf archey3
+pacman -S git zsh neovim tmux xbindkeys rofi fzf neofetch terminator pass
+trizen -S rofi-pass
 ```
 
 ## Optional
 ```bash
 pacman -S xfce4 pacaur weechat exa
-pacaur -S alacritty-git
+trizen -S alacritty-git
 ```
