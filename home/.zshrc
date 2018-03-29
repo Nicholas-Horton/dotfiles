@@ -140,13 +140,11 @@ bindkey "^[[1;5D" backward-word     #CTRL+Left
 #
 PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(git_dirty)%{$reset_color%}$ '
 
-## work stuff
-[ -f ~/.work_bashrc ] && source ~/.work_bashrc
-## /work stuff
+# Display neofetch, if command exists
+command -v neofetch >/dev/null 2>&1 && neofetch
+
 
 ## VIM stuff
 [ -f "~/.vim/plugged/gruvbox/gruvbox_256palette.sh" ] && source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 ## /VIM stuff
 
-# Display Archey3, if command exists
-command -v archey3 >/dev/null 2>&1 && archey3

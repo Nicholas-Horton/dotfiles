@@ -33,3 +33,6 @@ ln -sid $CURRENT_PATH/home/.config/terminator ~/.config/terminator
 
 mkdir -p ~/.gnupg
 ln -si $CURRENT_PATH/home/.gnupg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+
+mkdir -p ~/.config/neofetch
+ln -si $CURRENT_PATH/home/.config/neofetch/config.conf ~/.config/neofetch/config.conf
