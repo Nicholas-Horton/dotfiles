@@ -79,10 +79,6 @@ if command -v xcape >/dev/null 2>&1; then
   xcape -t 750
 fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
 # =----------------------------------=
 # |      Local configuration         |
 # |                                  |
