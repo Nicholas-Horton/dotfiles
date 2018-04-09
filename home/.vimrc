@@ -22,6 +22,11 @@ if has('nvim')
   if has('clipboard') && (executable('pbcopy') || executable('xclip') || executable('xsel'))
     set clipboard+=unnamedplus "Use system clipboard
   endif
+
+  " Preview substititions
+  " nosplit also works
+  set inccommand=split
+
 else
   set ttymouse=xterm2
   execute "set t_8f=\e[38;2;%lu;%lu;%lum"
