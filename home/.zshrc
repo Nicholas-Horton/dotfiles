@@ -37,9 +37,11 @@ export GPG_TTY=$(tty)
 # =----------------------------------------------------------------------------=
 #
 # Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+if command -v rbenv >/dev/null 2>&1; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+fi
 
 # FZF -- Source settings, if they exist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
