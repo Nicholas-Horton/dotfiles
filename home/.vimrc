@@ -161,6 +161,10 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 Plug 'terryma/vim-multiple-cursors'
 
+" Seamless pane navigation, within tmux
+let g:tmux_navigator_no_mappings = 1
+Plug 'christoomey/vim-tmux-navigator'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -353,6 +357,12 @@ vmap <C-h> ^
 vmap <C-l> g_
 imap <C-h> <c-o>^
 imap <C-l> <c-o>g_
+
+" Seamless tmux navigation
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 
 " Get rid of the frustrating c-w deletion in insert mode
 inoremap <c-w> <esc><c-w>
