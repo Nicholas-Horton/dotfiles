@@ -348,10 +348,11 @@ nnoremap <C-Space> :BTags<cr>
 nnoremap <Space> :BLines<cr>
 nnoremap <C-g> :GFiles?<cr>
 nnoremap <C-p> :FZF<cr>
-"nnoremap <C-f> :Buffers<cr>
+nnoremap <C-f> :Buffers<cr>
 
 " Ack search
 nnoremap <leader>/ :Ack!<space>""<left>
+vnoremap <leader>/ "sy:Ack!<space>"<C-R>""<left>
 
 " Search selection
 vnoremap // y/\V<C-R>"<CR>
@@ -361,8 +362,6 @@ nmap <C-k> 5k
 nmap <C-j> 5j
 vmap <C-k> 5k
 vmap <C-j> 5j
-imap <C-k> <up><up><up><up><up>
-imap <C-j> <down><down><down><down><down>
 
 " Make left-right motion more reasonable...
 nmap <C-h> ^
@@ -378,6 +377,6 @@ nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 
-" Get rid of the frustrating c-w deletion in insert mode
-inoremap <c-w> <esc><c-w>
+" Remove mild annoyances
 nnoremap Q <Nop>
+map q: <Nop>
