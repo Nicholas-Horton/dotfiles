@@ -55,9 +55,6 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 
-" Better JSON
-Plug 'elzr/vim-json'
-
 " Better JS
 Plug 'pangloss/vim-javascript'
 
@@ -77,17 +74,6 @@ if has('nvim')
 
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neco-syntax'
-
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
-  " tern
-  "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-  "if exists('g:plugs["tern_for_vim"]')
-  "  let g:tern_show_argument_hints = 'on_hold'
-  "  let g:tern_show_signature_in_pum = 1
-  "  autocmd FileType javascript setlocal omnifunc=tern#Complete
-  "endif
-  "autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 endif
 
 " Fuzzy finder (:FZF)
