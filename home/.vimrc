@@ -62,6 +62,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dadbod'
 
 "Supertab completion
 "Plug 'ervandew/supertab'
@@ -75,6 +76,9 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neco-syntax'
 endif
+
+" Distraction free mode
+Plug 'junegunn/goyo.vim'
 
 " Fuzzy finder (:FZF)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
