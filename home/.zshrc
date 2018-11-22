@@ -64,44 +64,37 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 # |                                                                            |
 # =----------------------------------------------------------------------------=
 #
-# =-- FZF Git status files --=
-# Usage: git checkout fst
+# ======== FZF Git status files ========
+# Usage: git checkout $(fst)
 function fst()
 {
   { git diff --cached --name-only & git ls-files  -dom --exclude-standard; } | sort -u | fzf -m --preview "cat {}"
 }
 
-# =-- Find a file by pattern --=
+# ====== Find a file by pattern ========
 function ff()
 {
   find . -type f -iname '*'"$*"'*' -ls ;
 }
 
-# =-- Find file and execute command on that file --=
-function fe()
-{
-  find . -type f -iname '*'"${1:-}"'*' \
-	 -exec ${2:-file} {} \; ;
-}
-
-# =-- Get IP adress on ethernet --=
-function my_ip()
-{
-	MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' | sed -e s/addr://)
-	echo ${MY_IP:-"Not connected"}
-}
-
-# =-- Get the branch name when in git repo --=
+# ==== Branch name when in git repo ====
 function parse_git_branch()
 {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-# =-- Figure out if there are staged changes --=
-function git_dirty()
+# === Show working directory changes ===
+function git_working_directory_changes_indicator()
 {
 	[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
+
+# ======== Show indexed changes ========
+function git_indexed_changes_indicator()
+{
+	[[ $(git diff --shortstat --cached 2> /dev/null | tail -n1) != "" ]] && echo "*"
+}
+
 
 # =----------------------------------------------------------------------------=
 # |                                                                            |
@@ -140,7 +133,7 @@ bindkey "^[[1;5D" backward-word     #CTRL+Left
 # |                                                                            |
 # =----------------------------------------------------------------------------=
 #
-PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)%{$fg[red]%}$(git_dirty)%{$reset_color%}$ '
+PS1='%{$reset_color%}%{$fg[blue]%}%n@%m %{$fg[green]%}%~%{$fg[yellow]%}$(parse_git_branch)$(git_indexed_changes_indicator)%{$fg[red]%}$(git_working_directory_changes_indicator)%{$reset_color%}$ '
 
 # Display neofetch, if command exists
 command -v neofetch >/dev/null 2>&1 && neofetch
