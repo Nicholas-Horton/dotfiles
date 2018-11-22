@@ -116,7 +116,7 @@ cnoreabbrev RG Ack
 " neoformatter
 Plug 'sbdchd/neoformat'
 let g:neoformat_try_formatprg = 1
-autocmd FileType javascript setlocal formatprg=npm\ run\ -s\ prettier
+autocmd FileType javascript,scss,css setlocal formatprg=npm\ run\ -s\ prettier
 
 " NERDTreeToggle
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
