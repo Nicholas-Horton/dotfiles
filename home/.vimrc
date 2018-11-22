@@ -141,6 +141,22 @@ Plug 'morhetz/gruvbox'
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='gruvbox'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_nr = 0 " hide tab number
+let g:airline#extensions#tabline#show_tab_type = 0 " Hide tab type indicator
+let g:airline#extensions#tabline#show_buffers = 0
+let airline#extensions#tabline#show_splits = 0
+" configure the minimum number of tabs needed to show the tabline.
+let g:airline#extensions#tabline#tab_min_count = 2
+
+let g:airline_skip_empty_sections = 1
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
+let g:airline_section_c = '%<%<%{airline#extensions#fugitiveline#bufname()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend("",0)}%{airline#util#wrap(airline#parts#filetype(),0)}'
+let g:airline_section_y = ''
+let g:airline_section_z = '%#__accent_bold#%4l/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v'
+
 Plug 'vim-airline/vim-airline'
 
 " Sublime-like multiple cursors
@@ -243,6 +259,8 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" Hide trailing tilde on empty lines at end of file
+hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -313,6 +331,12 @@ augroup fmt
   autocmd BufWritePre *.js silent Neoformat
 augroup END
 
+augroup todo_syntax
+ au!
+ au Syntax * syn match ToDoComments /\v<(FIXME|NOTE|TODO|OPTIMIZE|HACK):/
+       \ containedin=.*Comment,vimCommentTitle
+augroup END
+hi def link ToDoComments Todo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkeys/Keymaps
