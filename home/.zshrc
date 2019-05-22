@@ -43,8 +43,14 @@ if command -v rbenv >/dev/null 2>&1; then
   export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 fi
 
-# FZF -- Source settings, if they exist
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# FZF
+if command -v fzf >/dev/null 2>&1; then
+  # use ripgrep for fzf
+  if command -v rg >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='rg -L --files'
+  fi
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
 # GPG
 # Set GPG TTY
