@@ -347,6 +347,9 @@ augroup todo_syntax
 augroup END
 hi def link ToDoComments Todo
 
+" Prevent syntax highlighting for vue messing up
+autocmd FileType vue syntax sync fromstart
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkeys/Keymaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
