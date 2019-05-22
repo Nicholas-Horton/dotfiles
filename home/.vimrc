@@ -121,8 +121,21 @@ cnoreabbrev RG Ack
 
 " neoformatter
 Plug 'sbdchd/neoformat'
-let g:neoformat_try_formatprg = 1
-autocmd FileType javascript,scss,css setlocal formatprg=npm\ run\ -s\ prettier
+let g:neoformat_javascript_prettier = {
+            \ 'exe': './node_modules/.bin/prettier',
+            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+            \ 'stdin': 1,
+            \ }
+let g:neoformat_typescript_prettier = {
+            \ 'exe': './node_modules/.bin/prettier',
+            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+            \ 'stdin': 1,
+            \ }
+let g:neoformat_vue_prettier = {
+            \ 'exe': './node_modules/.bin/prettier',
+            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+            \ 'stdin': 1,
+            \ }
 
 " NERDTreeToggle
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -314,7 +327,7 @@ function! ToggleNeoformat()
     if !exists('#fmt#BufWritePre')
         augroup fmt
           autocmd!
-          autocmd BufWritePre *.js silent Neoformat
+          autocmd BufWritePre *.js,*.ts,*.vue silent Neoformat
         augroup END
     else
         augroup fmt
@@ -326,7 +339,7 @@ endfunction
 " Prettier/neoformat
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.js silent Neoformat
+  autocmd BufWritePre *.js,*.ts,*.vue silent Neoformat
 augroup END
 
 augroup todo_syntax
