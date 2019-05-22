@@ -45,6 +45,12 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " SYNTAX HIGHLIGHTING
+" Typescript
+Plug 'leafgarland/typescript-vim'
+
+" Vue
+Plug 'posva/vim-vue'
+
 " Coffeescript
 Plug 'https://github.com/kchmck/vim-coffee-script.git'
 
