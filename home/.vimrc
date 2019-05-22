@@ -44,6 +44,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" DEPENDS
+" Linting
+let g:ale_max_signs = 1
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '-'
+let g:ale_sign_column_always = 1
+Plug 'w0rp/ale'
+
 " SYNTAX HIGHLIGHTING
 " Typescript
 Plug 'leafgarland/typescript-vim'
@@ -69,19 +77,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dadbod'
-
-"Supertab completion
-"Plug 'ervandew/supertab'
-if has('nvim')
-  " Asynchronous keyword completion
-  let g:deoplete#enable_at_startup = 1
-
-  "Tab completion
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/neco-syntax'
-endif
 
 " Distraction free mode
 Plug 'junegunn/goyo.vim'
@@ -158,6 +153,9 @@ let g:gruvbox_sign_column='bg0'
 Plug 'morhetz/gruvbox'
 
 " Airline
+" ale
+let g:airline#extensions#ale#enabled = 1
+
 let g:airline_powerline_fonts = 1
 let g:airline_theme='gruvbox'
 
@@ -381,6 +379,12 @@ vmap <C-h> ^
 vmap <C-l> g_
 imap <C-h> <c-o>^
 imap <C-l> <c-o>g_
+
+imap <C-Space> <Plug>(ale_complete)
+
+" Move up and down in autocomplete with <c-j> and <c-k>
+inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-k> ("\<C-p>")
 
 " Seamless tmux navigation
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
