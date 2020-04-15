@@ -50,7 +50,17 @@ let g:ale_max_signs = 1
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '-'
 let g:ale_sign_column_always = 1
-Plug 'w0rp/ale'
+let g:ale_fixers = {
+      \  'go': ['goimports'],
+      \  'javascript': ['prettier', 'eslint'],
+      \  'typescript': ['prettier', 'eslint'],
+      \  'vue': ['prettier', 'eslint'],
+      \}
+let g:ale_linters = {
+	\ 'go': ['gopls', 'golangci-lint'],
+	\}
+let g:ale_fix_on_save = 1
+Plug 'dense-analysis/ale'
 
 " SYNTAX HIGHLIGHTING
 " Typescript
@@ -113,24 +123,6 @@ cnoreabbrev rg Ack
 cnoreabbrev rG Ack
 cnoreabbrev Rg Ack
 cnoreabbrev RG Ack
-
-" neoformatter
-Plug 'sbdchd/neoformat'
-let g:neoformat_javascript_prettier = {
-            \ 'exe': './node_modules/.bin/prettier',
-            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
-            \ 'stdin': 1,
-            \ }
-let g:neoformat_typescript_prettier = {
-            \ 'exe': './node_modules/.bin/prettier',
-            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
-            \ 'stdin': 1,
-            \ }
-let g:neoformat_vue_prettier = {
-            \ 'exe': './node_modules/.bin/prettier',
-            \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
-            \ 'stdin': 1,
-            \ }
 
 " NERDTreeToggle
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -320,26 +312,6 @@ endfunction
 
 autocmd BufWritePre * call StripWhitespace()
 
-" Runtime toggle prettier/neoformat
-function! ToggleNeoformat()
-    if !exists('#fmt#BufWritePre')
-        augroup fmt
-          autocmd!
-          autocmd BufWritePre *.js,*.ts,*.vue silent Neoformat
-        augroup END
-    else
-        augroup fmt
-          autocmd!
-        augroup END
-    endif
-endfunction
-
-" Prettier/neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre *.js,*.ts,*.vue silent Neoformat
-augroup END
-
 augroup todo_syntax
  au!
  au Syntax * syn match ToDoComments /\v<(FIXME|NOTE|TODO|OPTIMIZE|HACK):/
@@ -383,11 +355,13 @@ vmap <C-l> g_
 imap <C-h> <c-o>^
 imap <C-l> <c-o>g_
 
+" LSP
 imap <C-Space> <Plug>(ale_complete)
-
-" Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+nmap <C-d> <Plug>(ale_go_to_definition)
+nmap gd <Plug>(ale_hover)
+nmap gD <Plug>(ale_go_to_definition)
 
 " Seamless tmux navigation
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
