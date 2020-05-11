@@ -42,27 +42,21 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 call plug#begin('~/.vim/plugged')
 
 " DEPENDS
-" Linting
-let g:ale_max_signs = 1
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '-'
-let g:ale_sign_column_always = 1
-let g:ale_fixers = {
-      \  'go': ['goimports'],
-      \  'javascript': ['prettier', 'eslint'],
-      \  'typescript': ['prettier', 'eslint'],
-      \  'vue': ['prettier', 'eslint'],
-      \}
-let g:ale_linters = {
-	\ 'go': ['gopls', 'golangci-lint'],
-	\}
-let g:ale_fix_on_save = 1
-Plug 'dense-analysis/ale'
+" LSP
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " SYNTAX HIGHLIGHTING
+" Rust
+Plug 'rust-lang/rust.vim'
+
+" Go
+let g:go_fmt_command = "goimports"
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Typescript
 Plug 'leafgarland/typescript-vim'
 
@@ -206,7 +200,6 @@ set updatetime=250
 " Enable mouse support
 set mouse=a
 
-
 " Turn on the ruler (bar which indicates cursor position)
 set ruler
 
@@ -228,7 +221,7 @@ set magic
 " Show matching brackets
 set showmatch
 
-"How many tenths of a second to blink when matching brackets
+" How many tenths of a second to blink when matching brackets
 set mat=2
 
 " No annoying sound on errors
@@ -239,6 +232,13 @@ set tm=500
 
 " Allow moving away from a buffer without saving
 set hidden
+
+" COC
+" Don't pass messages  to |ins-completion-menu|
+set shortmess+=c
+
+" Always shows sign column
+set signcolumn=yes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -326,8 +326,6 @@ autocmd FileType vue syntax sync fromstart
 " => Hotkeys/Keymaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
-nnoremap <leader>? :Tags<cr>
-"nnoremap <leader>D :Lines<cr>
 nnoremap <C-Space> :BTags<cr>
 nnoremap <Space> :BLines<cr>
 nnoremap <C-g> :GFiles?<cr>
@@ -347,7 +345,7 @@ nmap <C-j> 5j
 vmap <C-k> 5k
 vmap <C-j> 5j
 
-" Make left-right motion more reasonable...
+" Make left+right motion more reasonable...
 nmap <C-h> ^
 nmap <C-l> g_
 vmap <C-h> ^
@@ -355,13 +353,42 @@ vmap <C-l> g_
 imap <C-h> <c-o>^
 imap <C-l> <c-o>g_
 
-" LSP
-imap <C-Space> <Plug>(ale_complete)
+" LSP - COC -----------------------------------------------
+inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
-nmap <C-d> <Plug>(ale_go_to_definition)
-nmap gd <Plug>(ale_hover)
-nmap gD <Plug>(ale_go_to_definition)
+
+nmap <silent> gd :call CocAction('doHover')<CR>
+nmap <silent> gD <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" ---------------------------------------------------------
 
 " Seamless tmux navigation
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
