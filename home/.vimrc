@@ -325,6 +325,12 @@ autocmd FileType vue syntax sync fromstart
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hotkeys/Keymaps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto Pairing
+inoremap {<Space> {  }<Left><Left>
+inoremap {<CR>    {<CR>}<Esc>O
+inoremap {{       {
+inoremap {}       {}
+
 " FZF
 nnoremap <C-Space> :BTags<cr>
 nnoremap <Space> :BLines<cr>
@@ -363,6 +369,9 @@ nmap <silent> gD <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
+nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -399,3 +408,6 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 " Remove mild annoyances
 nnoremap Q <Nop>
 map q: <Nop>
+
+" Go debugging
+nnoremap <leader>yf :let @+=expand("%") . ":" . line(".")<cr>
