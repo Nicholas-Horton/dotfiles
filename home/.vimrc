@@ -361,13 +361,14 @@ imap <C-l> <c-o>g_
 
 " LSP - COC -----------------------------------------------
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <c-j> ("\<C-n>")
-inoremap <expr> <c-k> ("\<C-p>")
+inoremap <expr> <c-j> coc#pum#visible() ? coc#pum#next(1) : "\<c-j>"
+inoremap <expr> <c-k> coc#pum#visible() ? coc#pum#prev(1) : "\<c-k>"
 
 nmap <silent> gd :call CocAction('doHover')<CR>
 nmap <silent> gD <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
 nmap <silent> [e <Plug>(coc-diagnostic-prev-error)
@@ -386,13 +387,7 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+inoremap <silent><expr> <cr> coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() : "\<C-g>u\<CR>"
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
